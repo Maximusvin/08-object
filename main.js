@@ -42,3 +42,17 @@ animal.getInfo();
 animal.calculateTime();
 animal.changeName("Сова");
 animal.getInfo();
+
+/*
+2. Створіть обєкт який має у собі 2 довжини сторін фігури. Додайте методи які будуть робити наступне - 
+рахувати площу фігури, периметр фігури, зроблять фігуру 3-д, зададуть назву фігури, переведуть значення з сантиметрів у метри.
+*/
+
+const figure = {
+  height: nul,
+  width: nul,
+
+  getSquare() {
+    console.log(this.height * this.width);
+  },
+};
