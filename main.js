@@ -49,10 +49,42 @@ animal.getInfo();
 */
 
 const figure = {
-  height: nul,
-  width: nul,
+  height: null,
+  width: null,
 
   getSquare() {
     console.log(this.height * this.width);
   },
+
+  getPerimeter() {
+    console.log(this.height + this.width);
+  },
+
+  transform3d(depth) {
+    this.depth = depth;
+    console.log(`x: ${this.width}, y: ${this.height}, z: ${this.depth}`);
+  },
+
+  createNewFigure(height, width) {
+    this.height = height;
+    this.width = width;
+  },
+
+  setName(name) {
+    this.name = name;
+    console.log(this.name);
+  },
+
+  convert() {
+    this.height /= 100;
+    this.width /= 100;
+    console.log(`Висота: ${this.height} m, Ширина ${this.width} m`);
+  },
 };
+
+figure.createNewFigure(20, 30);
+figure.getSquare();
+figure.getPerimeter();
+figure.transform3d(15);
+figure.setName("Квадрат");
+figure.convert();
