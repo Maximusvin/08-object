@@ -286,6 +286,21 @@ const showUniqueHobbies = (usersList) => {
   console.log(`Унікальні хобі працівників: ${uniqueHobbies.join(", ")}`);
 };
 
+// ====================================================================
+// ТРОХИ ПОДУМАВ І ВИРІШИВ ТАСКУ З УНІКАЛЬНИМИ ЗНАЧЕННЯМИ ЗНАЧНО КОРОТШИМ СПОСОБОМ:
+const showUniqueHobbies2 = (usersList) => {
+  const usersHobby = getAllHobbyUsers(usersList);
+
+  const uniqueHobby = usersHobby.filter(
+    (item) => usersHobby.indexOf(item) === usersHobby.lastIndexOf(item)
+  );
+
+  console.log(
+    `Унікальні хобі працівників (другий спосіб): ${uniqueHobby.join(", ")}`
+  );
+};
+
 showAdmins(users);
 showAverageAge(users);
 showUniqueHobbies(users);
+showUniqueHobbies2(users);
