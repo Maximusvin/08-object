@@ -176,5 +176,116 @@ showCostOfProducts(shoppingList);
 
 increaseCountProduct(shoppingList, "bread", "sweets", "bananas", "bananas"); // Банан вводимо 2 рази
 console.table(shoppingList);
-reduceCountProduct(shoppingList, "bread", "bread", "bread", "tomato");
+reduceCountProduct(shoppingList, "bread", "bread", "bread", "tomato"); // Хліб вводимо 3 рази
 console.table(shoppingList);
+
+/*
+4. Задана колекція [{name: "Yura", age: 55, hobby: ["films", "games", "hiking"], type: "Admin"}, {}, {},{}]. 
+Вивести всіх адмінів. Вивести середній вік усіх працівників. Вивести тільки унікальні хоббі працівників.
+*/
+
+const users = [
+  {
+    name: "Yura",
+    age: 55,
+    hobby: ["films", "games", "hiking", "IT"],
+    type: "Admin",
+  },
+  {
+    name: "Max",
+    age: 35,
+    hobby: ["genealogy", "games", "films", "IT"],
+    type: "Admin",
+  },
+  {
+    name: "Юля",
+    age: 23,
+    hobby: ["fishing", "games", "hiking", "singing"],
+    type: "Moder",
+  },
+  {
+    name: "Bond",
+    age: 78,
+    hobby: ["fishing", "games", "hiking", "murders"],
+    type: "User",
+  },
+  {
+    name: "Мари",
+    age: 12,
+    hobby: ["films", "games", "hiking", "swimming"],
+    type: "User",
+  },
+  {
+    name: "Ксю",
+    age: 15,
+    hobby: ["films", "games", "hiking", "travels"],
+    type: "User",
+  },
+  {
+    name: "Фу",
+    age: 12,
+    hobby: ["films", "games", "hiking", "IT"],
+    type: "Moder",
+  },
+  {
+    name: "Лина",
+    age: 47,
+    hobby: ["fishing", "games", "hiking", "sleep"],
+    type: "User",
+  },
+];
+
+const showAdmins = (usersList) => {
+  const adminList = [];
+  usersList.map((user) => {
+    user.type === "Admin" ? adminList.push(user.name) : null;
+  });
+  console.log(`Список адмінів: ${adminList.join(", ")}`);
+};
+
+const showAverageAge = (usersList) => {
+  let totalAgeOfUsers = null;
+  let averageAge = null;
+
+  usersList.map((user) => {
+    totalAgeOfUsers += user.age;
+  });
+
+  averageAge = Math.floor(totalAgeOfUsers / usersList.length);
+  console.log(`Середній вік усіх юзерів: ${averageAge} р.`);
+};
+
+const getAllHobbyUsers = (usersList) => {
+  const usersHobby = [];
+  usersList.map(({ hobby }) => {
+    usersHobby.push(...hobby);
+  });
+
+  return usersHobby;
+};
+
+// В даній ф-ції можна було б відразу вивести унікальні хобі, але вирішив зробити її статистичною функцією
+const getStatisticHobby = (usersList) => {
+  return getAllHobbyUsers(usersList).reduce((acc, hobby) => {
+    acc[hobby] = acc.hasOwnProperty(hobby) ? acc[hobby] + 1 : 1;
+    return acc;
+  }, {});
+};
+
+// Функція показує лише унікальні хобі, які зустрічаються не більше 1 разу серед усіх працівників
+const showUniqueHobbies = (usersList) => {
+  const uniqueHobbies = [];
+  const statOfHobby = getStatisticHobby(usersList);
+
+  for (key in statOfHobby) {
+    if (statOfHobby[key] === 1) {
+      uniqueHobbies.push(key);
+    }
+  }
+
+  console.log(`Унікальні хобі працівників: ${uniqueHobbies.join(", ")}`);
+};
+
+showAdmins(users);
+showAverageAge(users);
+showUniqueHobbies(users);
